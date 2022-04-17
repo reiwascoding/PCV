@@ -7,7 +7,7 @@ cap = cv2.VideoCapture(0)
 
 while(cap.isOpened()):
     ret,frame = cap.read()
-    frame = cv2.resize(frame, (1280, 720),
+    frame = cv2.resize(frame, (640, 480),
                          interpolation = cv2.INTER_LINEAR)
     cv2.imshow('frame',frame)
     
@@ -18,6 +18,7 @@ while(cap.isOpened()):
     masked_vid = cv2.bitwise_and(frame,frame,mask=mask)
     
     bg = cv2.imread('panggung.png')
+    bg = cv2.resize(bg,(640,480),interpolation = cv2.INTER_LINEAR)
     bg[mask != 0] = [0,0,0]
 
     hasil = bg + masked_vid
